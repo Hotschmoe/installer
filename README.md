@@ -2,7 +2,7 @@ Attempt to create a termux wrapper for the althea-mesh linux installer.
 
 # Create Termux Packages
 
-https://github.com/termux/termux-apt-repo
+  https://github.com/termux/termux-apt-repo
 
 # TODO
 
@@ -13,6 +13,10 @@ https://github.com/termux/termux-apt-repo
 a. Replace Rita binary for arm - installer currently has x86
 
 b. Double check wireguard
+
+3. Is there a stable ansible?
+
+  https://github.com/termux/termux-packages/issues/1815#
 
 
 
