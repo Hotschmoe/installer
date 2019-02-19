@@ -1,3 +1,22 @@
+Attempt to create a termux wrapper for the althea-mesh linux installer.
+
+# Create Termux Packages
+
+https://github.com/termux/termux-apt-repo
+
+# TODO
+
+1. Create TODO
+
+2. Ask Justin what he thinks needs done first (discord chat)
+
+
+
+
+
+
+-------------- From original Repo ----------------------
+
 # Althea Installer
 
 This is the installer for Althea on general purpose Linux. Whereas the [Althea
