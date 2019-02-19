@@ -8,7 +8,11 @@ https://github.com/termux/termux-apt-repo
 
 1. Create TODO
 
-2. Ask Justin what he thinks needs done first (discord chat)
+2. Ask Justin what he thinks needs done first - listed below (discord chat)
+
+a. Replace Rita binary for arm - installer currently has x86
+
+b. Double check wireguard
 
 
 
