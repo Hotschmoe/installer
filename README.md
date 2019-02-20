@@ -7,7 +7,7 @@ pynacl is broken, needs to be built but no make available, read instructions her
 ```
 pkg update && pkg upgrade
 termux-setup-storage
-pkg install clang libffi-dev openssl-dev python-dev make wireguard-tools git
+pkg install clang  python-dev libffi-dev libsodium-dev openssl-dev make wireguard-tools git
 git clone https://github.com/pyca/pynacl && cd pynacl
 find . -type f -not -path '*/\.*' -exec sed -i 's%/bin/sh%/data/data/com.termux/files/usr/bin/sh%g' {} \; 
 python setup.py install
@@ -43,6 +43,10 @@ b. Double check wireguard
 4. Ansible install correctly --> python multiprocessing does not work on Android, find the import and create a fallback --> use example below
   
   https://github.com/asciinema/asciinema/issues/271
+  
+5. is pkg install libgmp-dev libev-dev needed? pycrypto or gevent? What about ansible 1.8.x? see below:
+
+https://gist.github.com/hirschnase/9c2a0c6334f55bfdb373cc14dcbdf167
 
 
 
