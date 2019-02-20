@@ -1,5 +1,7 @@
 Attempt to create a termux wrapper for the althea-mesh linux installer.
 
+Multiproceesing ---> see TDO #4
+
 pynacl is broken, needs to be built but no make available, read instructions here: https://wiki.termux.com/wiki/Instructions_for_installing_python_packages
 
 # Instructions so Far (2019-02-19 --> check pynacl instructions)
@@ -19,10 +21,6 @@ git checkout termux-althea
 ansible-playbook -e @profiles/example.yml -c -i ci-hosts install-intermediary.yml
 ```
 
-# Create Termux Packages
-
-  https://github.com/termux/termux-apt-repo
-
 # TODO
 
 1. Create TODO
@@ -38,9 +36,10 @@ b. Double check wireguard
   https://github.com/termux/termux-packages/issues/1815#
   
   TRY THIS MAY FIX MULTIPROCESSING
+  
   https://gist.github.com/hirschnase/9c2a0c6334f55bfdb373cc14dcbdf167
   
-4. Ansible install correctly --> python multiprocessing does not work on Android, find the import and create a fallback --> use example below
+4. Ansible install correctly --> python multiprocessing does not work on Android, find the import (i think it's in ansible, create forked ansible or roll back to ansible 1.8.x) and create a fallback --> use example below
   
   https://github.com/asciinema/asciinema/issues/271
   
@@ -48,7 +47,9 @@ b. Double check wireguard
 
 https://gist.github.com/hirschnase/9c2a0c6334f55bfdb373cc14dcbdf167
 
+# Create Termux Packages
 
+  https://github.com/termux/termux-apt-repo
 
 
 
