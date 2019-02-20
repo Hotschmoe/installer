@@ -37,6 +37,9 @@ b. Double check wireguard
 
   https://github.com/termux/termux-packages/issues/1815#
   
+  TRY THIS MAY FIX MULTIPROCESSING
+  https://gist.github.com/hirschnase/9c2a0c6334f55bfdb373cc14dcbdf167
+  
 4. Ansible install correctly --> python multiprocessing does not work on Android, find the import and create a fallback --> use example below
   
   https://github.com/asciinema/asciinema/issues/271
