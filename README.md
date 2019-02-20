@@ -1,12 +1,22 @@
 Attempt to create a termux wrapper for the althea-mesh linux installer.
 
+pynacl is broken, needs to be built but no make available, read instructions here: https://wiki.termux.com/wiki/Instructions_for_installing_python_packages
+
 # Instructions so Far (2019-02-19 --> check pynacl instructions)
 
 ```
 pkg update && pkg upgrade
 termux-setup-storage
-pkg install clang libffi-dev openssl-dev python-dev make wireguard-tools
-
+pkg install clang libffi-dev openssl-dev python-dev make wireguard-tools git
+git clone https://github.com/pyca/pynacl && cd pynacl
+find . -type f -not -path '*/\.*' -exec sed -i 's%/bin/sh%/data/data/com.termux/files/usr/bin/sh%g' {} \; 
+python setup.py install
+cd ..
+pip install ansible
+git clone https://github.com/Hotschmoe/installer.git
+cd installer
+git checkout termux-althea
+ansible-playbook -e @profiles/example.yml -c -i ci-hosts install-intermediary.yml
 ```
 
 # Create Termux Packages
