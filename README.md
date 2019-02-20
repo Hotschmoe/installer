@@ -1,5 +1,14 @@
 Attempt to create a termux wrapper for the althea-mesh linux installer.
 
+# Instructions so Far (2019-02-19 --> check pynacl instructions)
+
+```
+pkg update && pkg upgrade
+termux-setup-storage
+pkg install clang libffi-dev openssl-dev python-dev make wireguard-tools
+
+```
+
 # Create Termux Packages
 
   https://github.com/termux/termux-apt-repo
@@ -17,6 +26,10 @@ b. Double check wireguard
 3. Is there a stable ansible?
 
   https://github.com/termux/termux-packages/issues/1815#
+  
+4. Ansible install correctly --> python multiprocessing does not work on Android, find the import and create a fallback --> use example below
+  
+  https://github.com/asciinema/asciinema/issues/271
 
 
 
