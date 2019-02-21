@@ -1,6 +1,6 @@
 Attempt to create a termux wrapper for the althea-mesh linux installer.
 
-Multiproceesing ---> see TDO #4
+Multiproceesing ---> see T0DO #4
 
 pynacl is broken, needs to be built but no make available, read instructions here: https://wiki.termux.com/wiki/Instructions_for_installing_python_packages
 
@@ -18,7 +18,14 @@ pip install ansible
 git clone https://github.com/Hotschmoe/installer.git
 cd installer
 git checkout termux-althea
-ansible-playbook -e @profiles/example.yml -c -i ci-hosts install-intermediary.yml
+ansible-playbook -e @profiles/example.yml -c local -i ci-hosts install-intermediary.yml
+```
+
+Switched to python2 to get ansible<1.9.0
+
+```
+pkg install python2 python2-dev
+pip2 install 'ansible<1.9.0'
 ```
 
 # TODO
