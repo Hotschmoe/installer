@@ -7,7 +7,7 @@
     state: present
   with_items: "{{debian_deps}}"
   when: ansible_distribution == 'Debian'
-  become: true
+  sudo: yes
 
 - name: Install Ubuntu deps
   apt:
@@ -15,7 +15,7 @@
     state: present
   with_items: "{{ubuntu_deps}}"
   when: ansible_distribution == 'Ubuntu'
-  become: true
+  sudo: yes
 
 - name: Install Fedora deps
   dnf:
@@ -23,7 +23,7 @@
     state: present
   with_items: "{{fedora_deps}}"
   when: ansible_distribution == 'Fedora'
-  become: true
+  sudo: yes
 
 - name: Install CentOS/RHEL deps
   yum:
@@ -31,7 +31,7 @@
     state: present
   with_items: "{{centos_deps}}"
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
-  become: true
+  sudo: yes
 
 - name: Install Archlinux Deps
   pacman:
@@ -39,4 +39,4 @@
     state: present
   with_items: "{{arch_deps}}"
   when: ansible_distribution == 'Archlinux'
-  become: true
+  sudo: yes
