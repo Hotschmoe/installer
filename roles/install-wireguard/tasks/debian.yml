@@ -4,7 +4,7 @@
   apt_repository:
     repo: deb http://deb.debian.org/debian/ unstable main
     state: present
-  become: true
+  sudo: yes
 
 - name: Set unstable packages as low priority
   blockinfile:
@@ -14,12 +14,12 @@
       Package: *
       Pin: release a=unstable
       Pin-Priority: 150
-  become: true
+  sudo: yes
 
 - name: Install wireguard
   apt:
     name: "{{item}}{{wireguard_version}}"
     update_cache: yes
-  become: true
+  sudo: yes
   with_items:
     - wireguard
