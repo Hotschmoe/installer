@@ -3,6 +3,7 @@
 
 - name: Install Althea
   hosts: intermediary
+  user: root
   roles:
     - install-deps
     - install-babel
