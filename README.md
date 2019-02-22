@@ -4,7 +4,7 @@ Multiproceesing ---> see T0DO #4
 
 pynacl is broken, needs to be built but no make available, read instructions here: https://wiki.termux.com/wiki/Instructions_for_installing_python_packages
 
-# Instructions so Far (2019-02-19 --> check pynacl instructions)
+# Instructions so Far (2019-02-22 --> check pynacl instructions)
 
 ```
 pkg update && pkg upgrade
