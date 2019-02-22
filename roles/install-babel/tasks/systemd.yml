@@ -6,7 +6,7 @@
     name: firewalld
     state: stopped
     enabled: no
-  become: true
+  sudo: yes
   ignore_errors: true
 
 - name: Check iptables status
@@ -14,7 +14,7 @@
     name: "{{item}}"
     state: started
     enabled: yes
-  become: true
+  sudo: yes
   with_items:
     - iptables
     - ip6tables
@@ -22,7 +22,7 @@
 
 - name: save iptables rules
   shell: "service {{item}} save"
-  become: true
+  sudo: yes
   with_items:
     - iptables
     - ip6tables
@@ -30,7 +30,7 @@
 
 - name: save iptables rules
   shell: "{{item}}"
-  become: true
+  sudo: yes
   with_items:
     - "iptables-save > /etc/iptables/rules.v4"
     - "ip6tables-save > /etc/iptables/rules.v6"
@@ -41,7 +41,7 @@
   template:
     src: babeld.service.j2
     dest: /etc/systemd/system/babeld.service
-  become: true
+  sudo: yes
   register: babel_service
 
 - name: Set babeld to run on startup
@@ -50,7 +50,7 @@
     name: babeld
     state: restarted
     enabled: yes
-  become: true
+  sudo: yes
 
 - name: Wait for Quick crashes
   pause:
