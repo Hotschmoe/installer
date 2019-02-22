@@ -2,12 +2,12 @@
 
 - name: Enable copr
   shell: dnf copr enable -y jdoss/wireguard
-  become: true
+  sudo: yes
 
 - name: Install wireguard
   dnf:
     name: "{{item}}{{wireguard_version}}"
-  become: true
+  sudo: yes
   allow_downgrade: true
   with_items:
     - wireguard-dkms
