@@ -5,7 +5,7 @@
   sudo: yes
 
 - name: Install wireguard
-  package:
+  apt:
     name: "{{item}}{{wireguard_version}}"
   sudo: yes
   allow_downgrade: true
