@@ -3,12 +3,12 @@
 - name: Add wireguard repo
   apt_repository:
     repo: "ppa:wireguard/wireguard"
-  become: true
+  sudo: yes
 
 - name: Install wireguard
   apt:
     name: "{{item}}{{wireguard_version}}"
     update_cache: yes
-  become: true
+  sudo: yes
   with_items:
     - wireguard
