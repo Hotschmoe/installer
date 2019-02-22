@@ -10,7 +10,7 @@
     dest: "/usr/bin/rita_exit"
     mode: 0755
     force: true
-  become: true
+  sudo: yes
   when: not rita_exit_bin.stat.exists
 
 - name: Copy rita-exit binary
@@ -18,19 +18,19 @@
     src: "{{playbook_dir}}/rita_exit"
     dest: /usr/bin/rita_exit
     mode: 0755
-  become: true
+  sudo: yes
   when: rita_exit_bin.stat.exists
 
 - name: Create database dir
   file:
     path: "{{database_dir}}"
     state: directory
-  become: true
+  sudo: yes
 
 - name: Check for database
   stat:
     path: "{{database_dir}}/exit.db"
-  become: true
+  sudo: yes
   register: database
 
 - name: Backup database
@@ -38,7 +38,7 @@
     src: "{{database_dir}}/exit.db"
     dest: "backup/{{ansible_fqdn}}/"
     validate_checksum: yes
-  become: true
+  sudo: yes
   when: database.stat.exists
 
 - name: Copy empty db
@@ -46,7 +46,7 @@
     url: "{{blank_db_url}}"
     dest: "{{database_dir}}/exit.db"
     backup: yes
-  become: true
+  sudo: yes
   when: not database.stat.exists
 
 - name: Fail on nonsystemd systems
@@ -59,14 +59,14 @@
     name: rita-exit
     state: stopped
     enabled: yes
-  become: true
+  sudo: yes
   ignore_errors: true
 
 - name: Copy the rita-exit config
   template:
     src: rita_exit.toml.j2
     dest: /etc/rita-exit.toml
-  become: true
+  sudo: yes
 
 - name: Open Rita port
   iptables:
@@ -76,7 +76,7 @@
     jump: ACCEPT
     ip_version: "{{item[2]}}"
     ctstate: NEW
-  become: true
+  sudo: yes
   with_nested:
     - ["tcp", "udp"]
     - ["{{rita_port}}", "{{bounty_port}}", "{{exit_registration_port}}"]
@@ -90,7 +90,7 @@
     ip_version: "{{item}}"
     jump: ACCEPT
     ctstate: NEW
-  become: true
+  sudo: yes
   with_items:
     - ipv4
     - ipv6
@@ -101,7 +101,7 @@
     regexp: "^fs.file-max="
     line: "fs.file-max=1073741824"
     state: present
-  become: true
+  sudo: yes
 
 - name: Tune process soft limit
   lineinfile:
@@ -109,7 +109,7 @@
     regexp: "^\\* soft"
     line: "* soft nofile 500000"
     state: present
-  become: true
+  sudo: yes
 
 - name: Tune process hard limit
   lineinfile:
@@ -117,10 +117,10 @@
     regexp: "^\\* hard"
     line: "* hard nofile 500000"
     state: present
-  become: true
+  sudo: yes
 
 - name: Reload sysctl
   shell: "sysctl -p"
-  become: true
+  sudo: yes
 
 - include_tasks: systemd.yml
