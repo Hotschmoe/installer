@@ -6,7 +6,7 @@
     chain: INPUT
     ctstate: ESTABLISHED,RELATED
     jump: ACCEPT
-  become: yes
+  sudo: yes
 
 - name: Open ssh port
   iptables:
@@ -16,7 +16,7 @@
     ip_version: "{{item}}"
     jump: ACCEPT
     ctstate: NEW
-  become: true
+  sudo: yes
   with_items:
     - ipv4
     - ipv6
@@ -28,7 +28,7 @@
     reject_with: "icmp6-adm-prohibited"
     ip_version: ipv6
     state: absent
-  become: true
+  sudo: yes
 
 - name: Remove default drop rules
   iptables:
@@ -37,7 +37,7 @@
     reject_with: "icmp-host-prohibited"
     ip_version: ipv4
     state: absent
-  become: true
+  sudo: yes
 
 - name: Remove default drop rules
   iptables:
@@ -46,25 +46,25 @@
     reject_with: "icmp-host-prohibited"
     ip_version: ipv4
     state: absent
-  become: true
+  sudo: yes
 
 - name: Lock down input chain
   iptables:
     chain: INPUT
     policy: DROP
-  become: true
+  sudo: yes
 
 - name: Lock down forward chain
   iptables:
     chain: FORWARD
     policy: DROP
-  become: true
+  sudo: yes
 
 ## TODO block ICMP spam attacks, DDOS style attacks etc https://javapipe.com/ddos/blog/iptables-ddos-protection/
 
 - name: save iptables rules
   shell: "service {{item}} save"
-  become: true
+  sudo: yes
   with_items:
     - iptables
     - ip6tables
@@ -72,7 +72,7 @@
 
 - name: save iptables rules
   shell: "{{item}}"
-  become: true
+  sudo: yes
   with_items:
     - "iptables-save > /etc/iptables/rules.v4"
     - "ip6tables-save > /etc/iptables/rules.v6"
