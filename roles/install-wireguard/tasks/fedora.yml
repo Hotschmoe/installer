@@ -5,7 +5,7 @@
   sudo: yes
 
 - name: Install wireguard
-  dnf:
+  package:
     name: "{{item}}{{wireguard_version}}"
   sudo: yes
   allow_downgrade: true
