@@ -4,18 +4,18 @@
   get_url:
     url: "{{wireguard_rhel_repo}}"
     dest: /etc/yum.repos.d/wireguard.repo
-  become: true
+  sudo: yes
 
 - name: Install epel
   yum:
     name: epel-release
     state: present
-  become: true
+  sudo: yes
 
 - name: Install wireguard
   yum:
     name: "{{item}}{{wireguard_version}}"
-  become: true
+  sudo: yes
   with_items:
     - wireguard-dkms
     - wireguard-tools
