@@ -19,4 +19,4 @@
   modprobe:
     name: wireguard
     state: present
-  become: true
+  sudo: yes
