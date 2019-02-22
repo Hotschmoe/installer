@@ -35,6 +35,8 @@ pkg install proot
 termux-chroot
 ```
 
+Operation 'become: true' is broken because old ansible doesnt take it. Replaced with 'sudo: yes' Now dnf is broken
+
 # TODO
 
 1. Create TODO
