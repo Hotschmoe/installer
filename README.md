@@ -35,7 +35,7 @@ pkg install proot
 termux-chroot
 ```
 
-Operation 'become: true' is broken because old ansible doesnt take it. Replaced with 'sudo: yes' Now dnf is broken
+Operation 'become: true' is broken because old ansible doesnt take it. Replaced with 'sudo: yes' dnf replaced with apt (i think this will cause problems) now iptables are broken. Will try to get newer version of ansible running on termux. Possibly though arch proot
 
 # TODO
 
