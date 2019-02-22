@@ -10,7 +10,7 @@
     dest: "/usr/bin/rita"
     mode: 0755
     force: true
-  become: true
+  sudo: yes
   when: not rita_bin.stat.exists
 
 - name: Copy rita binary
@@ -18,7 +18,7 @@
     src: "{{playbook_dir}}/rita"
     dest: /usr/bin/rita
     mode: 0755
-  become: true
+  sudo: yes
   when: rita_bin.stat.exists
 
 - name: Fail on nonsystemd systems
@@ -31,14 +31,14 @@
     name: rita-exit
     state: stopped
     enabled: yes
-  become: true
+  sudo: yes
   ignore_errors: true
 
 - name: Copy the rita config
   template:
     src: rita.toml.j2
     dest: /etc/rita.toml
-  become: true
+  sudo: yes
 
 - include_tasks: systemd.yml
 
@@ -50,7 +50,7 @@
     jump: ACCEPT
     ip_version: "{{item[2]}}"
     ctstate: NEW
-  become: true
+  sudo: yes
   with_nested:
     - ["tcp", "udp"]
     - ["{{rita_port}}", "{{bounty_port}}", "{{exit_registration_port}}"]
@@ -64,7 +64,7 @@
     ip_version: "{{item}}"
     jump: ACCEPT
     ctstate: NEW
-  become: true
+  sudo: yes
   with_items:
     - ipv4
     - ipv6
@@ -74,5 +74,5 @@
     dest: /etc/resolv.conf
     line: "{{item}}"
     state: present
-  become: true
+  sudo: yes
   with_items: "{{dns_servers}}"
