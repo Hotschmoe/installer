@@ -28,6 +28,13 @@ pkg install python2 python2-dev
 pip2 install 'ansible<1.9.0'
 ```
 
+Switched to Termux-chroot so that /var/ doesnt through error (update main.yml or always use chroot)
+
+```
+pkg install proot
+termux-chroot
+```
+
 # TODO
 
 1. Create TODO
